@@ -3,7 +3,9 @@ const snakeOk = [];
 
 //  before start, snake is in start position
     snakeOk.push(pairEq(snake[0]) (Pair(10)(5)));
-
+    snakeOk.push(pairEq( pairPlus (Pair(0)(1))  (Pair(1)(2)) )  (Pair(1)(3)) );
+    snakeOk.push(pairEq( pairMap  (x => x + 1)  (Pair(0)(1)) )  (Pair(1)(2)) );
+/*
 
 //  after one step, snake has moved up
     nextBoard();
@@ -27,6 +29,8 @@ const snakeOk = [];
 //  going counterclockwise, we end up north again
     changeDirection(countercw);
     snakeOk.push(direction === north);
+
+*/
 
 // test result report
 if ( snakeOk.every(elem => elem) ) {
