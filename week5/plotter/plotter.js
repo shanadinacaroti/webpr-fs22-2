@@ -8,8 +8,13 @@ function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
 
-    // todo: how to display?
+    let f = Function("x", "return " + userFunction.value);
+    display(canvas, f);
 
+    userFunction.onchange = _ => {
+        f = Function("x", "return " + userFunction.value);
+        display(canvas, f);
+    }
 }
 
 function display(canvas, f) {
