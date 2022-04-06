@@ -9,6 +9,19 @@ function start() {
     const canvas       = document.getElementById('canvas');
 
     // todo: how to display?
+    // Vorgehen:
+    let func = Function("x", "return " + userFunction.value); // 5.
+    userFunction.onchange = _ => {
+        func = Function("x", "return " + userFunction.value);
+        display(canvas, func);
+    } // 5.
+    display(canvas, func); // 5.
+    //display(canvas, x => Math.sin(x)); // 1.
+    //const func = () => display(canvas, x => eval(userFunction.value)); // 4.
+    //userFunction.onchange = func; // 4.
+    //func(); // 4.
+    //userFunction.onchange =  _ => display(canvas, x => eval(userFunction.value)); // 3.
+    //display(canvas, x => eval(userFunction.value)); // 2., 3.
 
 }
 
