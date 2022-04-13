@@ -24,7 +24,7 @@
 
     class Student extends Person {
         mustDo() {
-            return "fill quiz"
+            return "fill quiz";
         }
     }
 
@@ -87,7 +87,7 @@
             work:    () => worklog.push(worker.work())
         };
 
-        // todo ...
+        Object.setPrototypeOf(result, Person.prototype)
 
         return result
     }
