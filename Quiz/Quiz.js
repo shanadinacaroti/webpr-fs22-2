@@ -5,20 +5,19 @@ const e = {
 
 factor = 0.2;
 
-const bonusFormula = document.getElementById("bonusFormula");
-const bonusCalculation = emp =>  emp.bonus = eval('emp.bonus = emp.revenue * bonusFormula.value')
-const bonusCalcFunc = Function("emp", "return emp.bonus = emp.revenue * bonusFormula.value");
+const bonusFormula = document.getElementById("bonusFormula").value;
+const bonusCalculation = employee =>  employee.bonus = eval(bonusFormula)
+const bonusCalcFunc = Function("employee", "return " + bonusFormula);
 
 
-//console.log( bonusCalcFunc(e));
+
 //bonusCalculation(e);
-bonusCalcFunc(e);
-//document.writeln(bonusCalculation(e));
-//document.writeln( bonusCalcFunc(e));
+//console.log("e.bonus: ", e.bonus);
+e.bonus = bonusCalcFunc(e);
 document.writeln(e.bonus === e.revenue * factor);
 
 
-const input = document.getElementById("i");
-let join = arr = symb => arr;
+//const input = document.getElementById("i");
+//let join = arr = symb => arr;
 //input.value = [1, 2, 3].reduce((acc, curr) => curr + " " + acc );
-input.value = [1, 2, 3].reduce(join('-'));
+//input.value = [1, 2, 3].reduce(join('-'));

@@ -70,7 +70,7 @@
     const store = {
         accessor : good.getName  // when we store a reference elsewhere
     };
-    ok.push(store.accessor()  === "undefined undefined"); // OOPS!
+        ok.push(store.accessor()  === "undefined undefined"); // OOPS! -> this defined in getName() is referenced to the store-object
 
 
     report("object-literal", ok);
@@ -114,6 +114,7 @@
 ( () => {
     let ok = [];
 
+    // constructor
     function Person(first, last) {
         let firstname = first;
         let lastname  = last;
@@ -127,7 +128,7 @@
     ok.push(good.getName() === "Good Boy");
 
     // change value (failed attempt)
-    good.firstname = "Bad";
+    good.firstname = "Bad"; // hat keinen Einfluss auf die getName()-Methode.
     ok.push(good.firstname === "Bad");      // a new value has been set, but it is not used, Object.seal() prevents this
     ok.push(good.getName() === "Good Boy"); // change silently swallowed, expected: "Bad Boy"
 
@@ -213,7 +214,7 @@
         Person.prototype.getName = function() {  // functions are shared through the prototype // "=>" not allowed!
             return this.firstname + " " + this.lastname;
         };
-        return Person;
+        return Person; // Referenz auf Konstruktor Person
     }) (); // IIFE
 
     const good = new Person("Good", "Boy");    // now it requires "new"
@@ -231,7 +232,7 @@
     ok.push(Person.prototype.isPrototypeOf(good)); // Now they share the same prototype
     ok.push(Person.prototype.isPrototypeOf(bad));
 
-    // new functions get shared
+    // new functions get shared while runtime
     Person.prototype.secret = () => "top secret!";
     ok.push(good.secret() === "top secret!");
     ok.push(bad.secret()  === "top secret!");

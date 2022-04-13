@@ -7,7 +7,7 @@ const maxY =  1;
 function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
-    
+
     // todo: how to display?
     // Vorgehen:
     let func = Function("x", "return " + userFunction.value); // 5.
