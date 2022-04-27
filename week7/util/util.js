@@ -7,4 +7,6 @@ Number.prototype.times = function (callback) {
 }
 
 
-
+Number.prototype.times = function(callback) {
+    return Array.from({length: this}, (el,idx) => callback(idx));
+}
