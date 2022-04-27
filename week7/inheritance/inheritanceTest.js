@@ -24,13 +24,13 @@
 
     class Student extends Person {
         mustDo() {
-            return "fill quiz"
+            return "fill quiz";
         }
     }
 
     const s = new Student();
     ok.push(s.worklog.length === 0);        // initially empty
-    s.work();
+    s.work();                               // work() of Person-Class is executed w/ mustDo() of Student-Class
     ok.push(s.worklog[0] === "fill quiz");  // subclass impl
     ok.push(s.name === undefined);          // super ctor not enforced
 
@@ -88,6 +88,7 @@
         };
 
         // todo ...
+        Object.setPrototypeOf(result, Person.prototype)
 
         return result
     }
