@@ -2,7 +2,25 @@
 
 // find a solution for suite, test, assert
 
+const Assert = ok => {
+    const equals = (actual, expected ) => {
+        const result = actual === expected;
+        ok.push(result);
+        if ( false === result ) { // yoda conditional
+            console.error("failed: got", actual, "expected", expected);
+        }
+    }
+    return { equals }
+}
 
+/**
+ * Make a local scope in which to execute and report assertions.
+ */
+const test = (origin, callback) => {
+    const ok = [];         // array of bools anlegen (die assert Ergebnisse)
+    callback(Assert(ok));  // push the assertions
+    report(origin, ok);
+}
 
 // test result report
 // report :: String, [Bool] -> DOM ()
