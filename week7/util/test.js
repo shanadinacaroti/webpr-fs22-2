@@ -2,6 +2,17 @@
 
 // find a solution for suite, test, assert
 
+const Assert = ok => {
+    const equals = (actual, expected ) => {
+        const result = actual === expected;
+        ok.push(result);
+        if ( false === result ) { // yoda conditional
+            console.error("failed: got", actual, "expected", expected);
+        }
+    }
+    return { equals }
+}
+
 
 const Assert = () => {
     const ok = [];
@@ -16,16 +27,13 @@ const Assert = () => {
 }
 
 /**
- * make a local scope in which to execute and report assertions
+ * Make a local scope in which to execute and report assertions.
  */
 const test = (origin, callback) => {
-     const ok = [];
-    const assert = Assert();// array of bools (die assert-solutions)
-    callback(assert);       // push the assertions
-    report(origin, ok); // report the result
+    const ok = [];         // array of bools anlegen (die assert Ergebnisse)
+    callback(Assert(ok));  // push the assertions
+    report(origin, ok);
 }
-
-
 
 
 // test result report

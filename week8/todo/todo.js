@@ -11,7 +11,6 @@ function startTodo() {
 }
 
 function addTodo() {
-
     const container = document.getElementById("todoContainer");
     container.innerHTML += `
     <tr>
@@ -26,5 +25,4 @@ function addTodo() {
 
     // clear input field
     item.value = "";
-
 }
