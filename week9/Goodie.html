@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Goodie </title>
+</head>
+<body>
+
+<h1>Goodie</h1>
+
+<pre>
+
+<script>
+
+    /**
+     * identity
+     * @function
+     * @template T
+     * @param { T } x
+     * @return T
+     */
+    const id = x => x;
+
+    /**
+     * logs to the console
+     * @function
+     * @param { !String } message - what to print to the console, mandatory
+     * @return void
+     * @example
+     *     log("Hallo");
+     */
+    const log = message => console.log(message);
+
+    log(id("Hi"));
+    log(id(1));
+    id(1);
+
+</script>
+
+</pre>
+
+</body>
+</html>
