@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Goodie</title>
+</head>
+<body>
+<h1>Goodie</h1>
+
+<script>
+
+    /**
+     * identity
+     * @function
+     * @template T
+     * @param { T } x
+     * @return T
+     *
+     */
+    const id = x => x;
+
+    /**
+     * Logs to the console
+     * @function
+     * @param { !String } msg - print message to console, mandatory
+     * @return void
+     * @example
+     *      log("hello);
+     */
+    const log = msg => console.log(msg);
+    log("yello");
+    log(id("Hi"));
+    id(12);
+
+    /**
+     * Logs to the console
+     * @function
+     * @param { "hallo", "yello" } msg - print message
+     * @return void
+     * @example
+     *      log("hello);
+     */
+    const log2 = msg => console.log(msg);
+    // log2("gugus"); -> raises a warning
+    log2("hallo");
+
+</script>
+
+</body>
+</html>

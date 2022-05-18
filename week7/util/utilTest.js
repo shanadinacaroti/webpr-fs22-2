@@ -2,6 +2,7 @@
 // requires util.js
  test("my test", assert => {
      const collect = [];
+ });
 
 // extending the prototype of many objects
 test("util-times1", assert => {

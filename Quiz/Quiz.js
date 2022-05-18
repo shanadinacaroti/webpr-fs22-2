@@ -267,18 +267,136 @@ console.log("handle_12", handle_12(it => it.push(1)).length === 1);
 
 
 // Q18a
-const failSafe = defVal => callback => arg => {
-    try {
-        return callback(arg);
-    } catch (e) {
-        //console.log(e);
-        return defVal;
+// const failSafe = defVal => callback => arg => {
+//     try {
+//         return callback(arg);
+//     } catch (e) {
+//         return defVal;
+//     }
+// }
+//
+// const doError = x => { throw new Error()}
+// const errorCount = failSafe(77)(doError);
+//
+// console.log("error:", errorCount(null));
+// console.log("failSafe(false)(x=>x)(true):", failSafe(false)(x=>x)(true));
+// console.log(failSafe(false)(x=>x)(true) && failSafe(true)(doError)(null) && errorCount(null) === 1);
+
+
+// Q19
+// const Observable = value => {
+//     const listeners = [];
+//     return {
+//         onChange: callback => listeners.push(callback),
+//         getValue: () => value,
+//         setValue: val => {
+//             if (value === val) return;
+//             value = val;
+//             listeners.forEach(listener => listener(val));
+//         }
+//     }
+// }
+//
+// // special for this choice
+// const color = Observable('white');
+// let observed = null;
+// color.onChange(val => observed = val);
+// color.setValue('black');
+// console.log( observed === color.getValue());
+
+// same for all choices
+// const Observable = value => {
+//     const listeners = [];
+//     return {
+//         onChange: callback => listeners.push(callback),
+//         getValue: () => value,
+//         setValue: val => {
+//             if (value === val) return;
+//             value = val;
+//             listeners.forEach(listener => listener(val));
+//         }
+//     }
+// }
+
+// special for this choice
+// const color = Observable('white');
+// color.setValue('black');
+// console.log(color.getValue() === 'black');
+
+// const color = Observable('white');
+// let updateCount = 0;
+// color.onChange( _ => updateCount++);
+//
+// color.setValue('black');
+// color.setValue('white');
+// console.log(updateCount === 2);
+
+
+// const color = Observable('white');
+// color.value = 'black';
+// console.log(color.getValue() === 'black');
+
+// const color = Observable('white');
+// let updateCount = 0;
+// const updateListener = val => updateCount++;
+// color.setValue('black');
+// console.log(updateCount === 1);
+
+// const color = Observable('white');
+// let updateCount = 0;
+// color.onChange(_ => updateCount++);
+// color.setValue('black');
+// console.log(updateCount === 1);
+
+// const color = Observable('white');
+// let observed = null;
+// color.onChange(val => observed = val);
+// console.log(observed === color.getValue());
+//
+// const color = Observable('white');
+// let updateCount = 0;
+// color.onChange(_ => updateCount++);
+//
+// color.setValue('white');
+// console.log(updateCount === 1);
+
+// const color = Observable('white');
+// let observed = color.getValue();
+// color.onChange( val => observed = val);
+// console.log(observed === color.getValue());
+
+// const color = Observable('white');
+// console.log(color.getValue() === 'white');
+
+const Observable = value => {
+    const listeners = [];
+    return {
+        onChange: callback => {
+            listeners.push(callback);
+            callback(value, value);
+        },
+        getValue: () => value,
+        setValue: newValue => {
+            if (value === newValue) return;
+            const oldValue = value;
+            value = newValue;
+            listeners.forEach(callback => callback(value, oldValue));
+        }
     }
 }
 
-const doError = x => { throw new Error()}
-const errorCount = failSafe(77)(doError);
+let sum = 0;
+const trackable = Observable(0);
+trackable.onChange(val => sum += val);
 
-console.log("error:", errorCount(null));
-console.log("failSafe(false)(x=>x)(true):", failSafe(false)(x=>x)(true));
-console.log()
+trackable.setValue(1);
+trackable.setValue(2);
+trackable.setValue(3);
+
+console.log("-------");
+console.log("getValue():", trackable.getValue());
+console.log("sum:", sum);
+
+
+
+

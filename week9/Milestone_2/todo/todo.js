@@ -1,5 +1,6 @@
 // requires ../observable/observable.js
 
+// Constructor und legt ein Modell eines Todos an
 const TodoController = () => {
 
     const Todo = () => {
