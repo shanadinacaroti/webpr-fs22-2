@@ -2,6 +2,7 @@
 
 const TodoController = () => {
 
+    // Modell
     const Todo = () => {                                // facade
         const textAttr = Observable("text");            // we current don't expose it as we don't use it elsewhere
         const doneAttr = Observable(false);
@@ -41,7 +42,7 @@ const TodoItemsView = (todoController, rootElement) => {
             const template = document.createElement('DIV'); // only for parsing
             template.innerHTML = `
                 <button class="delete">&times;</button>
-                <input type="text" size="42">
+                <input type="text" size="34">
                 <input type="checkbox">            
             `;
             return template.children;

@@ -10,8 +10,19 @@
 
 <script>
     // Example
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then( response => response.json() )
+    .then( studs => console.log(studs.title))
+    .catch(err => console.log("got an error", err));
 
-    // 'https://jsonplaceholder.typicode.com/todos/1'
+    const asyncVersion = async () => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos/2').catch(err => console.log(err));
+        const todo = await res.json(); // .json() hat den Rückgabetyp Promise, darum auch hier ein await
+        console.log(todo.title);
+
+    }
+
+    asyncVersion()
 
 
 

@@ -3,7 +3,7 @@
 const Observable = value => {
     const listeners = [];
     return {
-        onChange: callback => {
+        onChange: callback => { // Notifikation, wenn es Änderungen gibt
             listeners.push(callback);
             callback(value, value);
         },
