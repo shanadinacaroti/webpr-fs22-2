@@ -22,20 +22,20 @@ const TodoController = () => {
         todoModel.add(newTodo);
         return newTodo;
     };
-    // const scheduler = Scheduler();
-    const addFortuneTodo = button => {
+    const scheduler = Scheduler();
+    const addFortuneTodo = button => { // button ist ein View-Element (MVC wird gebrochen)
         // button.disabled = true;
         const newTodo = Todo();
         todoModel.add(newTodo);
         newTodo.setText("...");
 
-       // scheduler.add( ok => {
+       scheduler.add( ok => { // asynchrone Aktion dem Scheduler hinzufügen
             fortuneService( text => {
                 newTodo.setText(text);
                 // button.disabled = false;
-                ok();
+                ok(); // ist wie resolve bei Promise
             });
-       // });
+       });
 
 
         return newTodo;

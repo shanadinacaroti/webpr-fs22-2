@@ -1,6 +1,6 @@
 
 // execute asynchronous tasks in strict sequence, aka "reactive stream", "flux architecture"
-const Scheduler = () => {
+const Scheduler = () => { // Scheduler ist ein Konstruktor
     let inProcess = false;
     const tasks = [];
     function process() {
@@ -31,8 +31,8 @@ const Scheduler = () => {
 
 const DataFlowVariable = howto => {
     let value = undefined;
-    return () => undefined === value
-                 ? value = howto()
+    return () => undefined === value // return ist eine Funktion ohne Parameter
+                 ? value = howto() // Ausdruck evaluiert zu neuen Wert und wird zurückgegeben
                  : value;
 };
 

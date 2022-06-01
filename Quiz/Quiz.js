@@ -47,15 +47,55 @@
 
 
 
-const NullSafe = x => {
-    const isNullSafe = y => y && y.then;
-    const maywrap    = y => ___ ; // if y is not NullSafe yet, make it so
+// const NullSafe = x => {
+//     const isNullSafe = y => y && y.then;
+//     const maywrap    = y => ___ ; // if y is not NullSafe yet, make it so
+//     return {
+//         then: fn => {
+//             if (!isNullSafe(x) || x !== undefined) fn(x); else maywrap(x);} // see(1)
+//     }
+// };
+
+const Scheduler = () => { // Scheduler ist ein Konstruktor
+    let inProcess = false;
+    const tasks = [];
+    function process() {
+        if (inProcess) { return; }
+        if (0 === tasks.length) { return; } // guard clause
+        inProcess = true;
+        const task = tasks.pop();
+
+        new Promise( (resolve, reject) => {
+            task(resolve);
+        }). then ( () => {
+            inProcess = false;
+            process();
+        });
+    }
+    function add(task) {
+        tasks.unshift(task);
+        process();
+    }
     return {
-        then: fn => ___ // see(1)
+        add: add,
+        addOk: task => add( ok => { task(); ok(); }) // convenience
     }
 };
 
+let state = [0];
 
+const scheduler = Scheduler();
+scheduler.add(ok => {
+    setTimeout( _ => {
+        state.push(1);
+        ok();
+    }, 100)
+});
+scheduler.add(ok => {
+    state.push(2);
+    ok();
+});
+console.log(state);
 
 
 
