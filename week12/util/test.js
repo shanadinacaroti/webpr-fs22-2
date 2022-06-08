@@ -58,7 +58,7 @@ function report(origin, ok) {
 
 function write(message) {
     const out = document.getElementById('out');
-    out.innerText += message + "\n";
+    out.textContent += message + "\n";
 }
 
 function bar(extend) {

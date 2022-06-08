@@ -56,50 +56,56 @@
 //     }
 // };
 
-const Scheduler = () => { // Scheduler ist ein Konstruktor
-    let inProcess = false;
-    const tasks = [];
-    function process() {
-        if (inProcess) { return; }
-        if (0 === tasks.length) { return; } // guard clause
-        inProcess = true;
-        const task = tasks.pop();
+// const Scheduler = () => { // Scheduler ist ein Konstruktor
+//     let inProcess = false;
+//     const tasks = [];
+//     function process() {
+//         if (inProcess) { return; }
+//         if (0 === tasks.length) { return; } // guard clause
+//         inProcess = true;
+//         const task = tasks.pop();
+//
+//         new Promise( (resolve, reject) => {
+//             task(resolve);
+//         }). then ( () => {
+//             inProcess = false;
+//             process();
+//         });
+//     }
+//     function add(task) {
+//         tasks.unshift(task);
+//         process();
+//     }
+//     return {
+//         add: add,
+//         addOk: task => add( ok => { task(); ok(); }) // convenience
+//     }
+// };
+//
+// let state = [0];
+//
+// const scheduler = Scheduler();
+// scheduler.add(ok => {
+//     setTimeout( _ => {
+//         state.push(1);
+//         ok();
+//     }, 100)
+// });
+// scheduler.add(ok => {
+//     state.push(2);
+//     ok();
+// });
+// console.log(state);
 
-        new Promise( (resolve, reject) => {
-            task(resolve);
-        }). then ( () => {
-            inProcess = false;
-            process();
-        });
-    }
-    function add(task) {
-        tasks.unshift(task);
-        process();
-    }
-    return {
-        add: add,
-        addOk: task => add( ok => { task(); ok(); }) // convenience
-    }
-};
+const str2chars = str => [...str]; // convert a string to an array of chars
+const isAlpha = char => char.match(/[a-z]/); // char is in the alphabet
 
-let state = [0];
+const palindrome = ( str ) => {
 
-const scheduler = Scheduler();
-scheduler.add(ok => {
-    setTimeout( _ => {
-        state.push(1);
-        ok();
-    }, 100)
-});
-scheduler.add(ok => {
-    state.push(2);
-    ok();
-});
-console.log(state);
+}
 
 
-
-
+console.log(isAlpha("p"));
 
 
 
