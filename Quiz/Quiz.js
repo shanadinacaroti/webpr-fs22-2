@@ -4,17 +4,23 @@
 // }
 //
 // factor = 0.2;
-//
+
 // const bonusFormula = document.getElementById("bonusFormula").value;
 // const bonusCalculation = employee =>  employee.bonus = eval(bonusFormula)
-// const bonusCalcFunc = Function("employee", "return " + bonusFormula);
+// const bonusCalcFunc = Function("employee", "return employee.bonus =" + bonusFormula);
 
 
 
 // bonusCalculation(e);
 // console.log("e.bonus: ", e.bonus);
-//e.bonus = bonusCalcFunc(e);
-//document.writeln(e.bonus === e.revenue * factor);
+// e.bonus = bonusCalcFunc(e);
+// bonusCalcFunc(e);
+// document.writeln(e.bonus === e.revenue * factor);
+// console.log(e.bonus === e.revenue * factor);
+// document.writeln(e.bonus);
+
+
+/* -------------------------------------------------------*/
 
 // Array.prototype.eq = function (arr) {
 //     if (this.length !== arr.length) {
@@ -38,23 +44,13 @@
 //     return this + num;
 // }
 // const res = (11).test(5);
-// // console.log(res);
+// console.log(res);
 //
 // Function.prototype.then = function (func) {
 //     return val => func(this(val));
 // }
 
 
-
-
-// const NullSafe = x => {
-//     const isNullSafe = y => y && y.then;
-//     const maywrap    = y => ___ ; // if y is not NullSafe yet, make it so
-//     return {
-//         then: fn => {
-//             if (!isNullSafe(x) || x !== undefined) fn(x); else maywrap(x);} // see(1)
-//     }
-// };
 
 // const Scheduler = () => { // Scheduler ist ein Konstruktor
 //     let inProcess = false;
@@ -97,23 +93,61 @@
 // });
 // console.log(state);
 
-const str2chars = str => [...str]; // convert a string to an array of chars
-const isAlpha = char => char.match(/[a-z]/); // char is in the alphabet
+// const str2chars = str => [...str]; // convert a string to an array of chars
+// const isAlpha = char => char.match(/[a-z]/); // char is in the alphabet
+//
+// const palindrome = ( str ) => {
+//     const arr = str2chars(str).map(letter => letter.toLowerCase());
+//     const filtered = arr.filter( letter => isAlpha(letter));
+//     const reversed = filtered.reduce((acc, curr) => [curr, ...acc], []);
+//     if (filtered.length !== reversed.length) {
+//         return false;
+//     }
+//
+//     for (let i = 0; i < filtered.length; i++) {
+//         if (filtered[i] !== reversed[i]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
 
-const palindrome = ( str ) => {
+// console.log(palindrome("ABBA"));
+// console.log(palindrome("Abba"));
+// console.log(palindrome("A man, a plan, a canal: Panama!"));
+// console.log(palindrome("Amore, Roma!"));
+// console.log(palindrome("Madam, I'm Adam!"));
+// console.log(palindrome("Never odd or even."));
+// console.log(palindrome("Amore"));
 
-}
+//
+// const join = (char, acc, curr,) => {
+//  return acc + char + curr;
+// }
+// const arr = [1, 2, 3, 4].reduce(join('-'));
+// console.log(arr);
+// // console.log('hallo' + join('-'));
 
 
-console.log(isAlpha("p"));
+const NullSafe = x => {
+    const isNullSafe = y => y && y.then;
+    const maywrap    = y => { isNullSafe(y) ? isNullSafe(y) : NullSafe(y) }// if y is not NullSafe yet, make it so
+    return {
+        then: fn => x === null || x === undefined ? maywrap(x) : fn(x) // see(1)
+    }
+};
+
+NullSafe(1).then(x => null).then(console.log);
 
 
+const processEven = i => new Promise((resolve, reject) => {
+    i % 2 === 0 ? resolve(i) : reject(i);
+});
 
 
-
-
-
-
-
+// processEven(4)
+//     .then( it => {console.log(it); return it})
+//     .then(it => processEven(it + 1))
+//     .catch(err => console.log("Error:", err));
 
 
